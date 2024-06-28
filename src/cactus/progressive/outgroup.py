@@ -205,7 +205,7 @@ class GreedyOutgroup(object):
     def refine_og_chroms(self, node_chroms, max_outgroups, extra_chrom_outgroups):
         """
         go over the outgroup assignment and try to refine the selections to
-        best represent the chromosome specificaitons
+        best represent the chromosome specifications
         """
         for source_name, og_names_dists in self.ogMap.items():
             source_id = self.mcTree.getNodeId(source_name)
@@ -287,7 +287,7 @@ class GreedyOutgroup(object):
     # if > 1, then only members of the candidate set and none of their
     # ancestors are chosen
     # maxNumOutgroups : max number of outgroups to put in each entry of self.ogMap
-    # extraChromOutgroups : number of extra outgroups that can be added to attemp
+    # extraChromOutgroups : number of extra outgroups that can be added to attempt
     # to satisfy chromosomes.
     def greedy(self, threshold = None, candidateSet = None,
                candidateChildFrac = 2., maxNumOutgroups = 1,
@@ -324,14 +324,14 @@ class GreedyOutgroup(object):
                 prev_len = len(node_chroms[parent])
                 node_chroms[parent] = node_chroms[parent].union(chr_list)
                 if len(node_chroms[parent]) == prev_len:
-                    # no sense continuing traveral upwards if we're not adding anything
+                    # no sense continuing traversal upwards if we're not adding anything
                     break
 
         # fast check to see if chromosomes of a given source are satisfied
         source_satisfied = {}
         for node in self.mcTree.postOrderTraversal():
             if node in node_chroms and len(node_chroms[node]) > 0 and not self.mcTree.isLeaf(node):
-                # ancestral nodes with descendant chromosome specificaitons need to be satisfied
+                # ancestral nodes with descendant chromosome specifications need to be satisfied
                 source_satisfied[node] = False
             else:
                 source_satisfied[node] = True

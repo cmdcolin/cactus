@@ -310,7 +310,7 @@ class ConfigWrapper:
             
         if getOptionalAttrib(findRequiredNode(self.xmlRoot, "blast"), 'gpu', typeFn=int, default=0):
             if not lastz_cores:
-                # segalign still can't contorl the number of cores it uses (!).  So we give all available on
+                # segalign still can't control the number of cores it uses (!).  So we give all available on
                 # single machine.  
                 if options.batchSystem.lower() in ['single_machine', 'singlemachine']:
                     if options.maxCores is not None and options.maxCores < 2**20:

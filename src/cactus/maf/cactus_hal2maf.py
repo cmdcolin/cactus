@@ -5,16 +5,14 @@ This is a spiritual successor to hal2mafMP.py (from hal).  putting it here in ca
 needed toil autoscale, and it'll be easier to keep all dependencies managed in submodules.  
 """
 
-import os, sys
+import os
+import sys
 from argparse import ArgumentParser
-import copy
-import timeit, time
+import timeit
 import math
 import xml.etree.ElementTree as ET
 
-from operator import itemgetter
 
-from cactus.progressive.seqFile import SeqFile
 from cactus.shared.common import setupBinaries, importSingularityImage
 from cactus.shared.common import cactusRootPath
 from cactus.shared.configWrapper import ConfigWrapper
@@ -36,7 +34,6 @@ from toil.statsAndLogging import set_logging_from_options
 from toil.realtimeLogger import RealtimeLogger
 from cactus.shared.common import cactus_cpu_count
 from toil.lib.humanize import bytes2human
-from sonLib.bioio import getTempDirectory
 from cactus.shared.common import cactus_clamp_memory
 from sonLib.nxnewick import NXNewick
 
@@ -90,7 +87,7 @@ def main():
                         default=None)
     parser.add_argument("--targetGenomes",
                         help="comma-separated (no spaces) list of target "
-                        "genomes (others are excluded) (vist all if empty)",
+                        "genomes (others are excluded) (visit all if empty)",
                         default=None)
     parser.add_argument("--noAncestors",
                         help="don't write ancestral sequences. IMPORTANT: "
@@ -136,7 +133,7 @@ def main():
                         help="Use the latest version of the docker container "
                         "rather than pulling one matching this version of cactus")
     parser.add_argument("--containerImage", dest="containerImage", default=None,
-                        help="Use the the specified pre-built containter image "
+                        help="Use the the specified pre-built container image "
                         "rather than pulling one from quay.io")
     parser.add_argument("--binariesMode", choices=["docker", "local", "singularity"],
                         help="The way to run the Cactus binaries", default=None)
@@ -506,7 +503,7 @@ def get_rename_map(genome_list, prefix='g'):
     """ map genome names to new alphanumeric placeholder names """
 
 def get_sed_rename_scripts(work_dir, genome_list, out_bed = False, prefix='g'):
-    """ get a pair of sciprts to run before/after mafDuplicateFilter or hgMafSummary to
+    """ get a pair of scripts to run before/after mafDuplicateFilter or hgMafSummary to
     make sure all genomes alphanumeric """
 
     # make a map of genome names to unique alphanumeric genome names

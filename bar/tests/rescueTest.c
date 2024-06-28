@@ -4,7 +4,7 @@
 #include "stPinchGraphs.h"
 #include "rescue.h"
 
-// Get a little-endian bed region array as an mmaped coverage array
+// Get a little-endian bed region array as an mapped coverage array
 // would appear.
 static bedRegion *getBedRegionArray(int64_t name, bool *coverageArray,
                                     int64_t length, bedRegion *array,

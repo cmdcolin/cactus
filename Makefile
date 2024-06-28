@@ -67,7 +67,7 @@ all_progs.%:
 all_libs.blastLib: all_libs.api
 
 ##
-# tests, see DEVELOPMENT.md for environment variables controling tests.
+# tests, see DEVELOPMENT.md for environment variables controlling tests.
 ##
 
 # Python tests
@@ -109,7 +109,7 @@ pytestOpts = --tb=native --durations=0 -rsx
 testOutDir = test-output
 testLogDir = ${testOutDir}/logs
 
-# parallel tests don't currenty work, not all cases of collission have
+# parallel tests don't currently work, not all cases of collision have
 # been fixed
 .NOTPARALLEL: test test_blast test_nonblast
 test: ${testModules:%=%_runtest} ${unitTests:%=%_run_unit_test}

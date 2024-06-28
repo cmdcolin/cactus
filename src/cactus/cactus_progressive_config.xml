@@ -11,7 +11,7 @@
 	<!-- The preprocessor tags are used to modify/check the input sequences before alignment -->
 	<!-- The cutHeaders preprocess modifies fastsa sequence names to help them pass checkUniqueHeaders. -->
 	<!-- cutBefore: all characters up to and including the last occurrence of a character in this string are clipped out -->
-	<!-- cutBeforeOcc: (if specified and > 0) only consider the first maxOcc occurences of a character in cutBefore filter -->
+	<!-- cutBeforeOcc: (if specified and > 0) only consider the first maxOcc occurrences of a character in cutBefore filter -->
 	<!-- cutAfter: all characters after and including the first occurrence of a character in this string are clipped out -->
 	<preprocessor memory="littleMemory" preprocessJob="cutHeaders" cutBefore="" cutAfter=" 	" active="1"/>
 	<!-- The first preprocessor tag checks that the first word of every fasta header is unique, as this is required for HAL. It throws errors if this is not the case -->
@@ -44,7 +44,7 @@
      Let IJC(L) be the inverse of the Jukes Cantor distance, expressed as the fraction of bases substituted. We filter all alignments
       with identity lower than 1 - IJC(L). -->
 	<!-- minimumDistance A minimum for L (see above), so we don't filter out alignments with high identity. -->
-	<!-- gpu Toggle on segAlign instead of lastz and set the number of gpus for each segalign job. 0: disable segalign, 'all': use all availabled GPUs-->
+	<!-- gpu Toggle on segAlign instead of lastz and set the number of gpus for each segalign job. 0: disable segalign, 'all': use all available GPUs-->
 	<!-- lastzMemory The memory to allocate for each blast job -->
 	<!-- chainMaxGapLength See paffy chain chainMaxGapLength param -->
 	<!-- chainGapOpen See paffy chain chainGapOpen param -->
@@ -238,7 +238,7 @@
 		<!-- partialOrderAlignmentWindow a sliding window approach (with hardcoded 50% overlap) is used to perform abpoa alignments.  memory is quadratic in this.  it is applied after bandingLimit -->
 		<!-- partialOrderAlignmentMaskFilter trim input sequences as soon as more than this many soft or hard masked bases are encountered (-1=disabled) -->
 		<!-- partialOrderAlignmentBand abpoa adaptive band size is <partialOrderAlignmentBand> + <partialOrderAlignmentBandFraction>*<Length>.  Negative value here disables adaptive banding -->
-		<!-- partialOrderAlignmentBandFraction abpoa adaptibe band second parameter (see above) -->
+		<!-- partialOrderAlignmentBandFraction abpoa adaptive band second parameter (see above) -->
 		<!-- partialOrderAlignmentSubMatrix (space-separated) list of 25 scores corresponding to the 5x5 ACGTN substitution matrix." -->
 		<!-- partialOrderAlignmentGapOpenPenalty1 abpoa gap open penalty (linear gap if 0) -->
 		<!-- partialOrderAlignmentGapExtensionPenalty1 abpoa gap extension penalty -->
@@ -301,7 +301,7 @@
 	<!-- cactus-graphmap options -->
 	<!-- assemblyName: special name of "virtual" minigraph assembly, which is just the list of sequences from the graph. -->
 	<!-- universalMZFilter: only use minimizers who appear in this proportion (1.0 == 100%) of sequences that map over them. -->
-	<!-- nodeBasedUniversal: universal filter calculated in terms of nodes istead of mapped regions. -->
+	<!-- nodeBasedUniversal: universal filter calculated in terms of nodes instead of mapped regions. -->
 	<!-- minMZBlockLength: only use minimizers that form contiguous blocks at least this long -->
 	<!-- minMAPQ: ignore minigraph alignments with mapping quality less than this -->
 	<!-- minGAFBlockLength: ignore minigraph alignments with block length less than this -->
@@ -361,12 +361,12 @@
 	<!--                    0-99999 : min_coverage = 0.99 -->
 	<!--                    10000-99999 : min_coverage = 0. 95 -->
 	<!--                    100000-infinity : min_coverage = 0.90 -->		  
-	<!-- minQueryUniqueness: The ratio of the number of query bases aligned to the chosen ref contig vs the next best ref contig must exceed this threshold to not be considered ambigious. -->
+	<!-- minQueryUniqueness: The ratio of the number of query bases aligned to the chosen ref contig vs the next best ref contig must exceed this threshold to not be considered ambiguous. -->
 	<!-- ambiguousName: Contigs deemed ambiguous using the above filters get added to a "contig" with this name, and are preserved in output. -->
 	<!-- remapSplitOptions: extra rgfa-split options to apply when splitting after remapping (use -u 3000000 to enable autoclipping between contigs, add -s to allow within contig)-->
 	<!-- maxRefContigs: The maximum number of auto-detect refContigs -->
 	<!-- refContigDropoff: When detecting refContigs, sort in reverse order by size, and pick refContigs up until contig N is this many times smaller than contig 1 (or maxRefContigs) is reached.  The general idea is to have a refContig for each chromosome then lump all the tiny ones into their own graphs. -->
-	<!-- refContigRegex: If specified, automatically promote any matching contig name into its own graph, regardless of how small it is.  Useful for making sure chrM doesn't get mixed with KI270322.1 etc. By defaulat it's anything beginning with chr (any case) followed by 0-3 chracters. This takes precedence over refContigDropoff -->
+	<!-- refContigRegex: If specified, automatically promote any matching contig name into its own graph, regardless of how small it is.  Useful for making sure chrM doesn't get mixed with KI270322.1 etc. By default it's anything beginning with chr (any case) followed by 0-3 characters. This takes precedence over refContigDropoff -->
 	<!-- otherContigName: When determining refContigs automatically, other contigs get lumped into a graph with this name. This affects the file structure but has zero bearing on whole-genome graphs/indexes -->
   	<graphmap_split
 		 minQueryCoverages="0.75 0.5 0.25"
@@ -420,11 +420,11 @@
 		 hal2vgOptions="--progress --inMemory"
 		 />
   	<multi_cactus>
-	        <!-- stategy: outgroup selection algorithm, can be one of greedy, greedyLeaves or greedyPreference -->
+	        <!-- strategy: outgroup selection algorithm, can be one of greedy, greedyLeaves or greedyPreference -->
 		<!-- threshold: depth increases by at most k per outgroup -->
 		<!-- ancestor_quality_fraction: min fraction of children of ancestor in candidateSet in order for the ancestor to be an outgroup candidate -->
 		<!-- max_num_outgroups: maximum number of outgroups per alignment job-->
-		<!-- extra_chrom_outgroups: if max_num_outgroups is not sufficent to satisfy sex chromosome requirements of an ancestor while still using nearest species, allow up to this many extra (when -1 set to the number of unique sex chromosomes for the ancestor).  -->
+		<!-- extra_chrom_outgroups: if max_num_outgroups is not sufficient to satisfy sex chromosome requirements of an ancestor while still using nearest species, allow up to this many extra (when -1 set to the number of unique sex chromosomes for the ancestor).  -->
 		<outgroup
 			strategy="greedyPreference"
 			threshold="0"

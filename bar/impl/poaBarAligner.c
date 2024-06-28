@@ -21,7 +21,7 @@
 //#include <omp.h>
 //#endif
 
-abpoa_para_t *abpoaParamaters_constructFromCactusParams(CactusParams *params) {
+abpoa_para_t *abpoaParameters_constructFromCactusParams(CactusParams *params) {
     abpoa_para_t *abpt = abpoa_init_para();
 
     // output options
@@ -42,7 +42,7 @@ abpoa_para_t *abpoaParamaters_constructFromCactusParams(CactusParams *params) {
     abpt->gap_open2 = cactusParams_get_int(params, 3, "bar", "poa", "partialOrderAlignmentGapOpenPenalty2");
     abpt->gap_ext2 = cactusParams_get_int(params, 3, "bar", "poa", "partialOrderAlignmentGapExtensionPenalty2");
     
-    // seeding paramters
+    // seeding parameters
     abpt->disable_seeding = cactusParams_get_int(params, 3, "bar", "poa", "partialOrderAlignmentDisableSeeding");
     assert(abpt->disable_seeding == 0 || abpt->disable_seeding == 1);
     abpt->k = cactusParams_get_int(params, 3, "bar", "poa", "partialOrderAlignmentMinimizerK");
@@ -59,7 +59,7 @@ abpoa_para_t *abpoaParamaters_constructFromCactusParams(CactusParams *params) {
     // optionally override the substitution matrix
     char *submat_string = cactusParams_get_string(params, 3, "bar", "poa", "partialOrderAlignmentSubMatrix");
     if (submat_string && strlen(submat_string) > 0) {
-        // Note, this will be used to explicitly override abpoa's subsitution matrix just before aligning
+        // Note, this will be used to explicitly override abpoa's substitution matrix just before aligning
         abpt->use_score_matrix = 1;
         assert(abpt->m == 5);
         int count = 0;

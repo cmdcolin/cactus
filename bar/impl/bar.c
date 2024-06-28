@@ -70,7 +70,7 @@ void bar(stList *flowers, CactusParams *params, CactusDisk *cactusDisk, stList *
     // Note that poa uses about N^2 memory, so maximum value is generally in 10s of kb
     int64_t poaWindow = cactusParams_get_int(params, 3, "bar", "poa", "partialOrderAlignmentWindow");
     int64_t maskFilter = cactusParams_get_int(params, 3, "bar", "poa", "partialOrderAlignmentMaskFilter");
-    abpoa_para_t *poaParameters = usePoa ? abpoaParamaters_constructFromCactusParams(params) : NULL;
+    abpoa_para_t *poaParameters = usePoa ? abpoaParameters_constructFromCactusParams(params) : NULL;
 
     //////////////////////////////////////////////
     //Run the bar algorithm

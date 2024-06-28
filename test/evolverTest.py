@@ -699,7 +699,7 @@ class TestCase(unittest.TestCase):
             self.assertEqual(len(val), len(oval))
             for i in range(len(val)):
                 is_leaf = key.startswith('sim')
-                # exact comparison for NumChildren and, for leaves, Lengh and NumSequences
+                # exact comparison for NumChildren and, for leaves, Length and NumSequences
                 exact_comp = i == 0 or (is_leaf and i in [1,2])
                 # no comparison for NumSequences in Ancestors as it seems to be all over the place
                 no_comp = i == 2 and not is_leaf

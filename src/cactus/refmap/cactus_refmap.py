@@ -29,11 +29,8 @@ from toil.statsAndLogging import logger
 
 import os
 from argparse import ArgumentParser
-import collections as col
 import xml.etree.ElementTree as ET
 
-from cactus.refmap import paf_to_lastz
-from cactus.refmap import fasta_preprocessing
 from cactus.refmap import apply_dipcall_bed_filter
 
 from cactus.shared.common import setupBinaries, importSingularityImage
@@ -41,7 +38,7 @@ from cactus.shared.common import makeURL
 from cactus.shared.common import cactus_call
 from cactus.shared.configWrapper import ConfigWrapper
 from cactus.shared.common import cactusRootPath
-from cactus.progressive.progressive_decomposition import compute_outgroups, parse_seqfile, get_subtree, get_spanning_subtree, get_event_set
+from cactus.progressive.progressive_decomposition import compute_outgroups, parse_seqfile, get_event_set
 from cactus.preprocessor.checkUniqueHeaders import sanitize_fasta_headers
 
 ## utilitary fxns:
@@ -241,7 +238,7 @@ def get_options():
     parser.add_argument('reference', type=str, 
                         help='Specifies which asm in seqFile should be treated as the reference.')
     parser.add_argument("outputFile", type=str, help = "Output pairwise alignment file")
-    parser.add_argument("--pathOverrides", nargs="*", help="paths (multiple allowd) to override from seqFile")
+    parser.add_argument("--pathOverrides", nargs="*", help="paths (multiple allowed) to override from seqFile")
     parser.add_argument("--pathOverrideNames", nargs="*", help="names (must be same number as --paths) of path overrides")
 
     # dipcall-like filters
@@ -260,7 +257,7 @@ def get_options():
     parser.add_argument("--binariesMode", choices=["docker", "local", "singularity"],
                         help="The way to run the Cactus binaries", default=None)      
     parser.add_argument("--containerImage", dest="containerImage", default=None,
-                        help="Use the the specified pre-built containter image "
+                        help="Use the the specified pre-built container image "
                         "rather than pulling one from quay.io")
 
     ## options for importing assemblies:
@@ -270,7 +267,7 @@ def get_options():
     # parser.add_argument('--all_unique_ids', action='store_true', 
     #                     help="Only take effect when called with --non_blast_output. Prevents the program from touching the assembly files; the user promises that they don't contain any duplicate contig ids. In reality, there should never be contig renamings if there are no duplicate fasta ids.")
     # parser.add_argument('--overwrite_assemblies', action='store_true', 
-    #                     help="When cleaning the assembly files to make sure there are no duplicate contig ids, overwrite the assembly files. Copy them to a neigboring folder with the affix '_edited_for_duplicate_contig_ids' instead.")
+    #                     help="When cleaning the assembly files to make sure there are no duplicate contig ids, overwrite the assembly files. Copy them to a neighboring folder with the affix '_edited_for_duplicate_contig_ids' instead.")
 
     # # Useful in normal asms import
     # parser.add_argument('--assembly_save_dir', type=str, default='./unique_id_assemblies/',

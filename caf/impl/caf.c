@@ -317,7 +317,7 @@ void caf(Flower *flower, CactusParams *params, char *alignmentsFile, char *secon
     stPinchIterator *pinchIteratorForConstraints = NULL;
     if (constraintsFile != NULL) {
         pinchIteratorForConstraints = stPinchIterator_constructFromFile(constraintsFile);
-        st_logDebug("Created an iterator for the alignment constaints from file: %s\n", constraintsFile);
+        st_logDebug("Created an iterator for the alignment constraints from file: %s\n", constraintsFile);
     }
 
     ///////////////////////////////////////////////////////////////////////////

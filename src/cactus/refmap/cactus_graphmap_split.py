@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""This sciprt will take the cactus-graphmap output and input and split it up into chromosomes.  This is done after a whole-genome graphmap as we need the whole-genome minigraph alignments to do the chromosome splitting in the first place.  For each chromosome, it will make a PAF, GFA and Seqfile (pointing to chrosome fastas)
+"""This script will take the cactus-graphmap output and input and split it up into chromosomes.  This is done after a whole-genome graphmap as we need the whole-genome minigraph alignments to do the chromosome splitting in the first place.  For each chromosome, it will make a PAF, GFA and Seqfile (pointing to chrosome fastas)
 """
 import os, sys
 from argparse import ArgumentParser
@@ -64,7 +64,7 @@ def main():
                         help="Use the latest version of the docker container "
                         "rather than pulling one matching this version of cactus")
     parser.add_argument("--containerImage", dest="containerImage", default=None,
-                        help="Use the the specified pre-built containter image "
+                        help="Use the the specified pre-built container image "
                         "rather than pulling one from quay.io")
     parser.add_argument("--binariesMode", choices=["docker", "local", "singularity"],
                         help="The way to run the Cactus binaries", default=None)
@@ -128,7 +128,7 @@ def cactus_graphmap_split(options):
             if options.otherContig:
                 assert options.otherContig not in options.refContigs
 
-            # get the minigraph "virutal" assembly name
+            # get the minigraph "virtual" assembly name
             graph_event = getOptionalAttrib(findRequiredNode(config_node, "graphmap"), "assemblyName", default="_MINIGRAPH_")
 
             # load the seqfile
@@ -244,7 +244,7 @@ def graphmap_split_workflow(job, options, config, seq_id_map, seq_name_map, gfa_
     # use the output of the above splitting to do the fasta splitting
     split_fas_job = split_gfa_job.addFollowOnJobFn(split_fas, seq_id_map, seq_name_map, split_gfa_job.rv(0))
 
-    # gather everythign up into a table
+    # gather everything up into a table
     gather_fas_job = split_fas_job.addFollowOnJobFn(gather_fas, split_gfa_job.rv(0), split_fas_job.rv(0), split_fas_job.rv(1))
 
     # lump "other" contigs together into one file (to make fewer align jobs downstream)
@@ -357,7 +357,7 @@ def split_gfa(job, config, gfa_id, paf_ids, ref_contigs, other_contig, reference
     if len(paf_paths) > 1:
         catFiles(paf_paths, paf_path)
 
-    # get the minigraph "virutal" assembly name
+    # get the minigraph "virtual" assembly name
     graph_event = getOptionalAttrib(findRequiredNode(config.xmlRoot, "graphmap"), "assemblyName", default="_MINIGRAPH_")
     # and look up its unique id prefix.  this will be needed to pick its contigs out of the list
     mg_id = graph_event
@@ -467,7 +467,7 @@ def split_fas(job, seq_id_map, seq_name_map, split_id_map):
     return fa_contigs, fa_contig_sizes
 
 def split_fa_into_contigs(job, event, fa_id, fa_name, split_id_map, strip_prefix=False):
-    """ Use samtools turn on fasta into one for each contig. this relies on the informatino in .fa_contigs
+    """ Use samtools turn on fasta into one for each contig. this relies on the information in .fa_contigs
     files made by rgfa-split """
 
     # download the fasta
@@ -501,7 +501,7 @@ def split_fa_into_contigs(job, event, fa_id, fa_name, split_id_map, strip_prefix
             # transform chr1:10-15 (1-based inclusive) into chr1_sub_9_15 (0-based end open)
             # this is a format that contains no special characters in order to make assembly hubs
             # happy.  But it does require conversion going into vg which wants chr[9-15] and
-            # hal2vg is updated to do this autmatically
+            # hal2vg is updated to do this automatically
             cmd.append(get_faidx_subpath_rename_cmd())
             if is_gz:
                 cmd.append(['bgzip', '--threads', str(job.cores)])
@@ -558,8 +558,8 @@ def gather_fas(job, output_id_map, contig_fa_map, contig_size_map):
 def bin_other_contigs(job, config, ref_contigs, other_contig, output_id_map):
     """ take all the other (ie non ref) contigs (in practice, unplaced bits of grch38) and merge them
     all up into a single "other" contig.  this avoids a 1000 align jobs getting created downstream. 
-    Note we've moved this to the ned here (it used to be done usinc -c -o in rgfa-split) so as to
-    avoid letting these contigs glom together into componenets: the final output will be identital
+    Note we've moved this to the end here (it used to be done usinc -c -o in rgfa-split) so as to
+    avoid letting these contigs glom together into components: the final output will be identital
     to if they were kept in separate files. """
     work_dir = job.fileStore.getLocalTempDir()
     if not ref_contigs or not other_contig or not output_id_map:
@@ -648,7 +648,7 @@ def export_split_data(toil, input_name_map, output_id_map, split_log_id, contig_
     
     for ref_contig in output_id_map.keys():        
         if output_id_map[ref_contig] is None or len(output_id_map[ref_contig]) == 0:
-            # todo: check ambigous?
+            # todo: check ambiguous?
             continue
         ref_contig_path = os.path.join(output_dir, ref_contig)
         if not os.path.isdir(ref_contig_path) and not ref_contig_path.startswith('s3://'):

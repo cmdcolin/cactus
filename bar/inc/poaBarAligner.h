@@ -29,7 +29,7 @@ PairwiseAlignmentParameters *pairwiseAlignmentParameters_constructFromCactusPara
  * Construct the abpoa parameters object parsing the cactus params specified parameters.
  * It needs to get freed with abpoa_free_para(abpt);
  */
-abpoa_para_t *abpoaParamaters_constructFromCactusParams(CactusParams *params);
+abpoa_para_t *abpoaParameters_constructFromCactusParams(CactusParams *params);
 
 /**
  * Object representing a multiple sequence alignment
@@ -138,7 +138,7 @@ char *get_adjacency_string(Cap *cap, int *length, bool return_string);
  * @param mask_filter Trim input sequences if encountering this many consecutive soft of hard masked bases (0 = disabled)
  * @param poa_band_constant abpoa "b" parameter, where adaptive band is b+f*<length> (b < 0 = disabled)
  * @param poa_band_fraction abpoa "f" parameter, where adaptive band is b+f*<length> (b < 0 = disabled)
- * Returns a list of AlignmentBlock ojects
+ * Returns a list of AlignmentBlock objects
  */
 stList *make_flower_alignment_poa(Flower *flower,
                                   int64_t max_seq_length,

@@ -302,7 +302,7 @@ class BatchPreprocessor(RoundedJob):
             return outSeqID
 
 def clean_if_different(job, file_id, other_file_id):
-    """ remove file_id from jobstore if its differetn from other_file_id"""
+    """ remove file_id from jobstore if its different from other_file_id"""
     if file_id != other_file_id:
         job.fileStore.deleteGlobalFile(file_id)
         
@@ -332,7 +332,7 @@ class CactusPreprocessor(RoundedJob):
                 conf = copy.deepcopy(self.configNode)
                 for node in conf.findall("preprocessor"):
                     node.attrib["eventName"] = eventName
-                # if we don't make different configs, the same reference somehow gets passed to mulitple childs below
+                # if we don't make different configs, the same reference somehow gets passed to multiple children below
                 configs.append(conf)
 
         for i, inputSequenceID in enumerate(self.inputSequenceIDs):
@@ -455,7 +455,7 @@ def main():
                         help="Use the latest version of the docker container "
                         "rather than pulling one matching this version of cactus")
     parser.add_argument("--containerImage", dest="containerImage", default=None,
-                        help="Use the the specified pre-built containter image "
+                        help="Use the the specified pre-built container image "
                         "rather than pulling one from quay.io")
     parser.add_argument("--binariesMode", choices=["docker", "local", "singularity"],
                         help="The way to run the Cactus binaries", default=None)

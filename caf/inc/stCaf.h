@@ -35,7 +35,7 @@ stPinchThreadSet *stCaf_constructEmptyPinchGraph(Flower *flower);
 stPinchThreadSet *stCaf_setup(Flower *flower);
 
 ///////////////////////////////////////////////////////////////////////////
-// Annealing fuctions -- adding alignments to pinch graph
+// Annealing functions -- adding alignments to pinch graph
 ///////////////////////////////////////////////////////////////////////////
 
 /*
@@ -56,7 +56,7 @@ void stCaf_annealBetweenAdjacencyComponents(stPinchThreadSet *threadSet, stPinch
 void stCaf_joinTrivialBoundaries(stPinchThreadSet *threadSet);
 
 ///////////////////////////////////////////////////////////////////////////
-// Melting fuctions -- removing alignments from the pinch graph
+// Melting functions -- removing alignments from the pinch graph
 ///////////////////////////////////////////////////////////////////////////
 
 typedef struct _filterArgs {
@@ -130,7 +130,7 @@ void stCaf_finish(Flower *flower, stPinchThreadSet *threadSet, int64_t minLength
         double proportionOfUnalignedBasesForNewChromosome);
 
 ///////////////////////////////////////////////////////////////////////////
-// Filtering fuctions -- filtering incoming alignments or entire blocks
+// Filtering functions -- filtering incoming alignments or entire blocks
 ///////////////////////////////////////////////////////////////////////////
 
 /*

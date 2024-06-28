@@ -13,7 +13,7 @@ This release fixes some bugs and updates to the latest Toil.
 - Raise Toil job memory requirement for `filter-paf-deletions`
 - Update to `vg` v1.57.0
 - Update `Toil` to v7.0
-- Fix bug where trim-outgroups job could requeset way too little memory when there are no outgroups
+- Fix bug where trim-outgroups job could request way too little memory when there are no outgroups
 - Fix typo that broke `cactus-maf2bigmaf` on uncompressed inputs
 - More robust implementation of `vcfwave`
 - Fix bug where RED preprocessing crashed `awk` returned a number in scientific notation
@@ -58,7 +58,7 @@ This release significantly changes the preprocessor step of Progressive Cactus i
 
 This release improves MAF output, along with some other fixes
 
-- `--maxMemory` option given more teeth. It is now used to clamp most large Toil jobs. On single-machine it defaults to system memory. This should prevent errors where Toil requrests more memory than available, halting the pipeline in an un-resumable state.
+- `--maxMemory` option given more teeth. It is now used to clamp most large Toil jobs. On single-machine it defaults to system memory. This should prevent errors where Toil requests more memory than available, halting the pipeline in an un-resumable state.
 - Update to latest `taffy` and use newer MAF normalization. This should result in larger blocks and fewer gaps. MAF rows will now be sorted phylogenetically rather than alphabetically
 - Better handle `.` characters in genome names during MAF processing. Previously neither duplicate filtering nor bigmaf summary creation could handle dots, but that should be fixed now.
 - Duplicating filtering now done automatically in `cactus-maf2bigmaf`. 
@@ -131,7 +131,7 @@ This release contains some bug fixes and changes to docker image uploads
 - CPU docker release now made locally as done for GPU
 - `--binariesMode docker` will automatically point to release image (using GPU one as appropriate)
 - `--consMemory` overrides `hal2vg` memory as well
-- `--defaulMemory` defaults to `4Gi` when using docker binaries
+- `--defaultMemory` defaults to `4Gi` when using docker binaries
 - SegAlign job memory specification increased to something more realistic
 - `--lastzMemory` option added to override SegAlign memory -- highly recommended on SLURM
 - chromosome (.vg / .og) outputs from pangenome pipeline will have ref paths of form `GRCh38#0#chr1` instead of `GRCh38#chr1` to be more consistent with full-genome indexes (and PanSN in general)
@@ -199,7 +199,7 @@ This release patches a few bugs introduced or found in v2.6.1
 
 This Release adds SLURM cluster support for Cactus (both progressive and pangenome). It also adds some new visualization features to the pangenome pipeline, along with several bugfixes.
 
-- SLURM support added (via Toil v5.11).  It's important to read the documentation about `--consMemory` and `--indexMemory` when running large aligments.
+- SLURM support added (via Toil v5.11).  It's important to read the documentation about `--consMemory` and `--indexMemory` when running large alignments.
 - ODGI now integrated into Cactus.  See `cactus-pangenome` options `--viz, --odgi, --chrom-og` and `--draw` for incorporating it into your output.
 - Add `--chop` option to `cactus-pangenome` make sure all output graphs have nodes chopped down to at most `1024bp`. By default, the `.gfa.gz` is unchopped and the `.gbz` is, which can lead to annoying confusion when trying to compare node IDs across different files.
 - Fix bug where `_MINIGRAPH_` paths ended up in the `.full` output graphs.
@@ -227,13 +227,13 @@ This Release significantly updates Cactus's chaining logic which, in early tests
 
 This Release patches some bugs in the pangenome pipeline and makes it a bit more user-friendly
 
-- Fix support for multiple referenes via `--reference` and `--vcfReference`
+- Fix support for multiple references via `--reference` and `--vcfReference`
 - Fix bug where certain combinations of options (ie returning filtered but not clipped index) could lead to crash
 - Fix crash when handling non-ascii characters in vg crash reports
 - Fix the `--chrom-vg` option in `cactus-pangenome`
 - New option `--mgCores` to specify number of cores for minigraph construction (rather than lumping in with `--mapCores` which is also used for mapping)
 - Better defaults for number of cores used in pangenome pipeline on singlemachine.
-- Fix bug where small contigs in the reference sample could lead to crashes if they couldn't map to themselves (and `--refContigs` was not used to specify chromosomes). `--refContigs` is now automatically set if not specifed. 
+- Fix bug where small contigs in the reference sample could lead to crashes if they couldn't map to themselves (and `--refContigs` was not used to specify chromosomes). `--refContigs` is now automatically set if not specified. 
 - Update to vg 1.48.0
 - Update pangenome paper citation from preprint to published version.
 
@@ -268,7 +268,7 @@ This release includes some new export tools for the UCSC Genome Browser
 - `cactus-hal2chains` created in order to convert HAL output from Cactus into sets of pairwise alignment chains, using either `halLiftover` or `halSynteny`
 - `cactus-maf2bigmaf` created to convert `.maf` output from `cactus-hal2maf` to BigMaf and BigMaf Summary files for display on the Genome Browser
 - `cactus-hal2maf` typo fixed where 3 (instead of 30) was set for the default value of `--maximumGapLength`
-- Boost TAFFY normalization defaults in `cactus-hal2maf`, bringing `--maxmimumGapLength` to 100, and `--maximumBlockLengthToMerge` to 1000, and adding the heuristic block-breaking dupe filter from `taffy norm`. The latter is on by default to prevent over fragmentation, but can be disabled with `--kepGapCausingDupes`
+- Boost TAFFY normalization defaults in `cactus-hal2maf`, bringing `--maximumGapLength` to 100, and `--maximumBlockLengthToMerge` to 1000, and adding the heuristic block-breaking dupe filter from `taffy norm`. The latter is on by default to prevent over fragmentation, but can be disabled with `--kepGapCausingDupes`
 - Remove `--onlyOrthologs` and `--noDupes` options from `cactus-hal2maf` and replace with the `--dupeMode` option. `--dupeMode single` is now the recommended way of getting at most one row / species.  More information about this added to the documentation.
 - `--maxRefNFrac` option added to `cactus-hal2maf` to filter out blocks where the reference sequence is mostly Ns (default to filter out >95% Ns).
 - Change abPOA scoring matrix to be more consistent with lastz parameters used by cactus, where `N` bases are penalized when aligned with other characters. Before, they could be aligned to anything. This will hopefully make the above filter less necessary.
@@ -310,7 +310,7 @@ Other changes include
 - Include latest vg release.
 - Include latest version of taffy (fka taf).
 
-# Relase 2.3.1 2022-12-23
+# Release 2.3.1 2022-12-23
 
 This release contains bugfixes changes that should result in cleaner alignments both in pangenome mode in some cases.
 
@@ -318,7 +318,7 @@ This release contains bugfixes changes that should result in cleaner alignments 
 - Pangenome pipeline now included in legacy binaries. 
 - Use mash distance (by default) to determine the minigraph construction order
 - Update HAL to fix `halAppendSubtree` crash in certain cases
-- Log `blossom5` stderr to hopefully help debug failurs associated with it.
+- Log `blossom5` stderr to hopefully help debug failures associated with it.
 
 
 # Release 2.3.0 2022-11-21
@@ -358,7 +358,7 @@ This release contains yet another patch regarding the `minimumBlockDegreeToCheck
 
 # Release 2.2.2 2022-09-28
 
-This release fixes a critcal bug in `cactus-align --pangenome` that was introduced in v2.2.0 and causes massive underalignments in pangenome graphs with more than 10 or so samples. Huge thanks for @minglibio for catching this!
+This release fixes a critical bug in `cactus-align --pangenome` that was introduced in v2.2.0 and causes massive underalignments in pangenome graphs with more than 10 or so samples. Huge thanks for @minglibio for catching this!
 
 - `cactus-align --pangenome` fixed to properly set pangenome overrides in the config.
 - `gfaffix` updated to fix `cactus-graphmap-join` crash while normalizing some types of hairpins in the graph.  also, un-covered nodes left by `gfaffix` now filtered out before they can cause errors in `deconstruct`.
@@ -389,7 +389,7 @@ This release contains a major update to the "blast" phase, where chaining logic 
 
 Other changes include:
 
-- Complete rewrite and drastic simplification of all code used to genereate lastz anchors
+- Complete rewrite and drastic simplification of all code used to generate lastz anchors
 - PAF format now used natively throughout Cactus (replacing lastz cigars)
 - Major refactor and cleanup of the "progressive" python module, removing vestiges of old Progressive Cactus repo
 - Rewrite and simplifcation of the "Cactus Workflow" Python code.
@@ -517,7 +517,7 @@ This release introduces the [Cactus Pangenome Pipeline](https://github.com/Compa
 - `cactus_bar` now has an option to ignore masked sequence with a given length threshold.
 - `cactus-graphmap-split` tool added to split input fasta sequences into chromosomes using minigraph alignments in order to create alignment subproblems and improve scaling.
 - `cactus-align-batch` tool added to align several chromsomes at once using one job per chromosome. (`--batch` option added to `cactus-align` to achieve the same using many jobs per chromosome)
-- `--outVG` and `outGFA` options added to `cactus-align` to output pangenome graphs in addtion to hal.
+- `--outVG` and `outGFA` options added to `cactus-align` to output pangenome graphs in addition to hal.
 
 Other changes:
 - `cactus-prepare` scheduling bug fix
@@ -572,8 +572,8 @@ hal2vg version included: [v1.0.0](https://github.com/ComparativeGenomicsToolkit/
 This release fixes how Kent tools required for `hal2assemblyHub.py` were packaged in 1.1.0 (thanks @nathanweeks).  
 
 Notable Changes:
- - The required shared libaries to run the Kent tools are added to the Docker Image
- - The same Kent tools are removed from the binary release.  They were included under the assumption that they were statically built and fully standalone, but they are not.  Instead, instrucitons are provided to guide interested users to installing them on their own. 
+ - The required shared libraries to run the Kent tools are added to the Docker Image
+ - The same Kent tools are removed from the binary release.  They were included under the assumption that they were statically built and fully standalone, but they are not.  Instead, instructions are provided to guide interested users to installing them on their own. 
 
 GPU Lastz version used in GPU-enabled Docker image: [3e14c3b8ceeb139b3b929b5993d96d8e5d3ef9fa](https://github.com/ComparativeGenomicsToolkit/SegAlign/commit/3e14c3b8ceeb139b3b929b5993d96d8e5d3ef9fa)
 

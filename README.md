@@ -18,13 +18,13 @@ To file a bug report or enhancement request against the code or documentation, c
 
 ## Align Genomes from Different Species
 
-* See the [Progressive Cactus documenation](doc/progressive.md)
+* See the [Progressive Cactus documentation](doc/progressive.md)
 * Please cite the [Progressive Cactus paper](https://doi.org/10.1038/s41586-020-2871-y) when using Cactus.  Additional descriptions of the core algorithms can be found [here](https://doi.org/10.1101/gr.123356.111) and [here](https://doi.org/10.1089/cmb.2010.0252).
 * Please cite the [HAL paper](https://doi.org/10.1093/bioinformatics/btt128) when using HAL tools. 
 
 ## Align Genomes from the Same Species and Build Pangenome Graphs 
 
-* See the [Minigraph-Cactus Pangenome Pipeline documenatation](doc/pangenome.md)
+* See the [Minigraph-Cactus Pangenome Pipeline documentation](doc/pangenome.md)
 * Please cite the [Minigraph-Cactus paper](https://doi.org/10.1038/s41587-023-01793-w).
 
 ## Acknowledgements

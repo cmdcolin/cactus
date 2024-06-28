@@ -1,7 +1,7 @@
 import fileinput
 
 # parse the SAM record and count how many reads
-# in each profile (mapping quality x perfect alignement x aligment score)
+# in each profile (mapping quality x perfect alignment x alignment score)
 #    mapping quality: number. '-1' for unmapped reads
 #    perfect: boolean to specify if the reads aligned perfectly
 #    alignment score: value of the AS tag

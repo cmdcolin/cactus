@@ -52,7 +52,7 @@ def main():
     parser.add_argument("seqFile", help = "Seq file")
     parser.add_argument("pafFile", nargs='?', default='', type=str, help = "Pairiwse aliginments (from cactus-blast, cactus-refmap or cactus-graphmap)")
     parser.add_argument("outHal", type=str, help = "Output HAL file (or directory in --batch mode)")
-    parser.add_argument("--pathOverrides", nargs="*", help="paths (multiple allowd) to override from seqFile")
+    parser.add_argument("--pathOverrides", nargs="*", help="paths (multiple allowed) to override from seqFile")
     parser.add_argument("--pathOverrideNames", nargs="*", help="names (must be same number as --paths) of path overrides")
 
     #Pangenome Options
@@ -64,7 +64,7 @@ def main():
     parser.add_argument("--barMaskFilter", type=int, default=None,
                         help="BAR's POA aligner will ignore softmasked regions greater than this length. (overrides partialOrderAlignmentMaskFilter in config)")
     parser.add_argument("--pafMaskFilter", type=int, default=None,
-                        help="softmasked (query) regions greather than this length will be removed from the input PAF before it is processed")
+                        help="softmasked (query) regions greater than this length will be removed from the input PAF before it is processed")
     parser.add_argument("--maxLen", type=int, default=None,
                         help="Only align up to this many bases (overrides <bar bandingLimit> and <caf maxRecoverableChainLength> in configuration)")
     parser.add_argument("--outVG", action="store_true", help = "export pangenome graph in VG (.vg) in addition to HAL")
@@ -80,7 +80,7 @@ def main():
                         " must appear in NEWICK tree in <seqfile>) to use as a "
                         "root for the alignment.  Any genomes not below this node "
                         "in the tree may be used as outgroups but will never appear"
-                        " in the output.  If no root is specifed then the root"
+                        " in the output.  If no root is specified then the root"
                         " of the tree is used. ", default=None)
     parser.add_argument("--includeRoot", action="store_true", help="Include the root's sequence in the alignment"
                         " (used only when running alignment update recipes)")    
@@ -88,7 +88,7 @@ def main():
                         help="Use the latest version of the docker container "
                         "rather than pulling one matching this version of cactus")
     parser.add_argument("--containerImage", dest="containerImage", default=None,
-                        help="Use the the specified pre-built containter image "
+                        help="Use the the specified pre-built container image "
                         "rather than pulling one from quay.io")
     parser.add_argument("--binariesMode", choices=["docker", "local", "singularity"],
                         help="The way to run the Cactus binaries", default=None)
@@ -211,7 +211,7 @@ def batch_align_jobs(job, jobs_dict):
     return rv_dict
 
 def make_batch_align_jobs(options, toil, filestore=None, config_wrapper=None):
-    """ Make a dicitonary of align jobs """
+    """ Make a dictionary of align jobs """
     if filestore:
         work_dir = filestore.getLocalTempDir()
     
@@ -414,7 +414,7 @@ def export_vg(job, hal_id, config_wrapper, doVG, doGFA, referenceEvents, checkpo
     """ use hal2vg to convert the HAL to vg format """
 
     if not resource_spec:
-        # caller couldn't figure out the resrouces from hal_id promise.  do that
+        # caller couldn't figure out the resources from hal_id promise.  do that
         # now and try again
         return job.addChildJobFn(export_vg, hal_id, config_wrapper, doVG, doGFA, referenceEvents, checkpointInfo,
                                  resource_spec = True,
@@ -482,8 +482,8 @@ def main_batch():
     parser.add_argument("outHal", type=str, help = "Output directory (can be s3://)")
     parser.add_argument("--alignOptions", type=str, help = "Options to pass through to cactus-align (don't forget to wrap in quotes)")
     parser.add_argument("--alignCores", type=int, help = "Number of cores per align job")
-    parser.add_argument("--alignCoresOverrides", nargs="*", help = "Override align job cores for a chromosome. Space-separated list of chrom,cores pairs epxected")
-    parser.add_argument("--configOverrides", nargs="*", help = "Override configFile for a chromosome. Space-spearated list of chrom,configFile pairs expected")
+    parser.add_argument("--alignCoresOverrides", nargs="*", help = "Override align job cores for a chromosome. Space-separated list of chrom,cores pairs expected")
+    parser.add_argument("--configOverrides", nargs="*", help = "Override configFile for a chromosome. Space-separated list of chrom,configFile pairs expected")
 
     parser.add_argument("--configFile", dest="configFile",
                         help="Specify cactus configuration file",
@@ -493,7 +493,7 @@ def main_batch():
                         help="Use the latest version of the docker container "
                         "rather than pulling one matching this version of cactus")
     parser.add_argument("--containerImage", dest="containerImage", default=None,
-                        help="Use the the specified pre-built containter image "
+                        help="Use the the specified pre-built container image "
                         "rather than pulling one from quay.io")
     parser.add_argument("--binariesMode", choices=["docker", "local", "singularity"],
                         help="The way to run the Cactus binaries", default=None)

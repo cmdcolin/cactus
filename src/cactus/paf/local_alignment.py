@@ -133,7 +133,7 @@ def combine_chunks(job, chunked_alignment_files, batch_size):
 
 
 def merge_combined_chunks(job, combined_chunks):
-    # mege up and return some chunks, deleting them too
+    # merge up and return some chunks, deleting them too
     output_path = job.fileStore.getLocalTempFile()
     with open(output_path, 'a') as output_file:
         for i,chunk in enumerate(combined_chunks):
@@ -197,7 +197,7 @@ def invert_alignments(job, alignment_file):
 
 
 def make_ingroup_to_outgroup_alignments_0(job, ingroup_event, outgroup_events, event_names_to_sequences, distances, params):
-    # Generate the alignments fle
+    # Generate the alignments file
     alignment_file = job.addChildJobFn(make_ingroup_to_outgroup_alignments_1, ingroup_event, outgroup_events,
                                             event_names_to_sequences, distances, params).rv()
 
@@ -360,7 +360,7 @@ def chain_alignments(job, alignment_files, alignment_names, reference_event_name
 
 
 def chain_one_alignment(job, alignment_file, alignment_name, params, include_inverted_alignments):
-    """ run paffy chain on one PAF. include_inverted_alignemnts is a flag to control if we additionally include
+    """ run paffy chain on one PAF. include_inverted_alignments is a flag to control if we additionally include
     the inverted paf records for chaining.
     """
 

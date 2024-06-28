@@ -8,12 +8,12 @@ df = lapply(files, function(ff){
   df %>% mutate(sample=gsub("(.*).isec.stats.tsv.gz", '\\1', ff))
 }) %>% bind_rows
 
-## using the QUAL field as quality threshod
+## using the QUAL field as quality threshold
 df.qual = df %>% filter(qual.type=='QUAL') %>% arrange(min.qual) %>%
   mutate(qual.c=factor(qual.c, levels=unique(qual.c))) %>%
   filter(call!='hom ref') %>% group_by(set, sample) %>% mutate(prop=n/sum(n))
 
-## using the GQ field as quality threshod
+## using the GQ field as quality threshold
 df.gq = df %>% filter(qual.type=='GQ') %>% arrange(min.qual) %>%
   mutate(qual.c=factor(qual.c, levels=unique(qual.c))) %>%
   filter(call!='hom ref') %>% group_by(set, sample) %>% mutate(prop=n/sum(n))

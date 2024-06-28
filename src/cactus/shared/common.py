@@ -84,7 +84,7 @@ def cactus_override_toil_options(options):
         # some people get confused when trying to use their cluster from inside the cactus
         # docker. it doesn't work (without tons of hackery) since slurm isnt in the image
         if options.batchSystem.lower() not in ['single_machine', 'singleMachine']:
-            e = RuntimeError('"--batchSystem {}" is not supported from inside the Cactus Docker container. In order to use this batch system, you must run directly from a Python virutalenv on your head node. You can use --binariesMode docker to execute the various binaries using docker, but the cactus command itself must be run directly on your system where it will have access to your cluster environment (ex: sbatch).'.format(options.batchSystem))
+            e = RuntimeError('"--batchSystem {}" is not supported from inside the Cactus Docker container. In order to use this batch system, you must run directly from a Python virtualenv on your head node. You can use --binariesMode docker to execute the various binaries using docker, but the cactus command itself must be run directly on your system where it will have access to your cluster environment (ex: sbatch).'.format(options.batchSystem))
             raise e
         if options.binariesMode in ['docker', 'singularity']:
             e = RuntimeError('"--binariesMode {}" is not supported from inside the Cactus Docker container, which does not support nested containerization. So if you are running Cactus from inside a Docker or Singularity container, please do not use the --binariesMode option.'.format(options.binariesMode))
@@ -487,7 +487,7 @@ def singularityCommand(tool=None,
     if gpus:
         base_singularity_call += ['--nv']
     #todo: it seems like this would be useful (eg to hopefully limit squashfs resources) but it doesn't work
-    #      on our cluster (crytpic cgroups errors)
+    #      on our cluster (cryptic cgroups errors)
     #if cpus:
     #    base_singularity_call += ['--cpus', str(cpus)]
     
@@ -1178,7 +1178,7 @@ def get_faidx_subpath_rename_cmd():
     transform chr1:10-15 (1-based inclusive) into chr1_sub_9_15 (0-based end open)
     this is a format that contains no special characters in order to make assembly hubs
     happy.  But it does require conversion going into vg which wants chr[9-15] and
-    hal2vg is updated to do this autmatically
+    hal2vg is updated to do this automatically
     """
     return ['sed', '-e', 's/\([^:]*\):\([0-9]*\)-\([0-9]*\)/echo "\\1_sub_$((\\2-1))_\\3"/e']
 

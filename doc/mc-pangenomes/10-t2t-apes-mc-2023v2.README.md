@@ -8,7 +8,7 @@ https://github.com/marbl/Primates#data-reuse-and-license
 
 Cactus version: v2.7.1
 
-Note that this uses the new `--noSplit` option that puts all contigs into one big graph without doing any kind of chromosome decomposition (as was done for the HPRC).  Also, we're requesting tons of memory (see log for actual usage).  Most processes don't need so much but the distance indexing takes over a terrabyte for this graph. 
+Note that this uses the new `--noSplit` option that puts all contigs into one big graph without doing any kind of chromosome decomposition (as was done for the HPRC).  Also, we're requesting tons of memory (see log for actual usage).  Most processes don't need so much but the distance indexing takes over a terabyte for this graph. 
 
 In terms of graph construction, the 4 orang genomes can be added without much issue (I've tried this on the older assemblies). Not sure about the indexing though.  
 
@@ -16,7 +16,7 @@ In terms of graph construction, the 4 orang genomes can be added without much is
 TOIL_SLURM_ARGS="--partition=long --time=8000" cactus-pangenome ./js-pg ./10-t2t-apes-mc-2023v2.seqfile --outDir 10-t2t-apes-mc-2023v2 --outName 10-t2t-apes-mc-2023v2 --reference hs1 hg38 --noSplit --gbz clip full --gfa clip full --xg clip full --odgi --vcf --giraffe clip --haplo clip --vcfReference hs1 hg38 --logFile 10-t2t-apes-mc-2023v2.log  --batchSystem slurm --coordinationDir /data/tmp --caching false --batchLogsDir ./batch-logs --consMemory 1500Gi --indexMemory 1500Gi --mgMemory 500Gi --mgCores 72 --mapCores 8 --consCores 128 --indexCores 72 --giraffe clip
 ```
 
-## VCF PostPorcessing
+## VCF PostProcessing
 
 The same processing was used to make the "decomposed" HPRC vcfs.  Note that this process will filter out giant SVs as a 100kb threshold was used.
 
@@ -46,7 +46,7 @@ for i in hs1 hg38; do TOIL_SLURM_ARGS="--partition=long --time=8000" cactus-maf2
 
 ## Naming
 
-The GCA accessions don't play nicely with the pangenome haplotype naming convetions, the alignment was generated with human-readable names.  To flip back to accessions in the HAL
+The GCA accessions don't play nicely with the pangenome haplotype naming conventions, the alignment was generated with human-readable names.  To flip back to accessions in the HAL
 
 ```
 halRenameGenomes 10-t2t-apes-mc-2023v2.full.hal rename-hal-to-gca.tsv

@@ -96,7 +96,7 @@ uf.map = rbind(gr.l$uf.map %>% mutate(graph='GRCh38-based pangenome'),
                ch.l$uf.map %>% mutate(graph='CHM13-based pangenome')) %>%
   mutate(graph=factor(graph, unique(graph)))
 
-## how many ambigous contigs?
+## how many ambiguous contigs?
 df %>% group_by(graph, status) %>% summarize(n=n(), mean.length=mean(length), total.Gbp=sum(length/1e6))
 
 ## why were contigs filtered?

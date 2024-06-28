@@ -1,6 +1,6 @@
 Cactus version used: v2.5.0
 
-Download hg38 and split it into one fasta file for non-alt contigs, and a seperate fast file for each alt.
+Download hg38 and split it into one fasta file for non-alt contigs, and a separate fast file for each alt.
 
 ```
 wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz

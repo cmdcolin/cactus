@@ -171,7 +171,7 @@ Here are the output files:
 4.0K	hprc10.viz
 ```
 
-There are four versions of the graph produced (please see [here](https://github.com/ComparativeGenomicsToolkit/cactus/blob/master/doc/pangenome.md#clipping-filtering-and-indexing) for more details), denoted by these preffixes:
+There are four versions of the graph produced (please see [here](https://github.com/ComparativeGenomicsToolkit/cactus/blob/master/doc/pangenome.md#clipping-filtering-and-indexing) for more details), denoted by these prefixes:
 
 * `hprc.sv` : This is the output of `minigraph` and contains only structural variants. The input haplotypes are not embedded as paths
 * `hprc.full` : This is a base-level graph containing all sequence that could be assigned to a reference chromosome. Centromeres are included but are unaligned.
@@ -215,7 +215,7 @@ Then follow the instructions [described here](https://github.com/ComparativeGeno
 
 Next, switch to the directory where your input data is and where you want to run cactus and run the following. 
 
-**IMPORTANT** Toil/Cactus do not (yet) understand cluser time limits. This will change soon (our cluster will be adopting time limits this month), but in the meantime, you need to make sure that the default time limit for all jobs is longer than the slowest job (which is almost always minigraph construction). One way to do this is with the `TOIL_SLURM_ARGS` environment variable. In general, this variable lets you add any options you want to every job submitted to the cluster by Cactus (see `sbatch --help` for a listing) of possible options. If you do not specify this, jobs will be submitted with some default limit (3 hours, I think) and get evicted if they go longer. Thanks **Mamana Mbiyavanga** for helping to figure this out!!!
+**IMPORTANT** Toil/Cactus do not (yet) understand cluster time limits. This will change soon (our cluster will be adopting time limits this month), but in the meantime, you need to make sure that the default time limit for all jobs is longer than the slowest job (which is almost always minigraph construction). One way to do this is with the `TOIL_SLURM_ARGS` environment variable. In general, this variable lets you add any options you want to every job submitted to the cluster by Cactus (see `sbatch --help` for a listing) of possible options. If you do not specify this, jobs will be submitted with some default limit (3 hours, I think) and get evicted if they go longer. Thanks **Mamana Mbiyavanga** for helping to figure this out!!!
 
 ```
 export TOIL_SLURM_ARGS="-t 1440"
@@ -464,7 +464,7 @@ This takes about 2.75 hours and 64Gb of RAM, and also produces `./hprc10.HG002.g
 
 ### Long Read Mapping
 
-Note: this section is adpated from [methods for the mc paper](https://github.com/ComparativeGenomicsToolkit/cactus/tree/master/doc/mc-paper/hprc#long-read-mapping-with-graphaligner).
+Note: this section is adapted from [methods for the mc paper](https://github.com/ComparativeGenomicsToolkit/cactus/tree/master/doc/mc-paper/hprc#long-read-mapping-with-graphaligner).
 
 `vg giraffe` will soon be able to map long reads, but is not ready yet. For now, you should use [GraphAligner](https://github.com/maickrau/GraphAligner).
 
@@ -709,7 +709,7 @@ reference: /path/to/<reference>.fna
 reads:
  sample1: /path/to/<sample_name>.fastq
  #sample2: reads-sample2.fastq
-# path to PanGenie exectuable
+# path to PanGenie executable
 pangenie_genotype: /path/to/pangenie/build/src/PanGenie
 pangenie_index: /path/to/pangenie/build/src/PanGenie-index
 # name of the output directory (keep in mind PanGenie wants a specific directory where to save all the outputs 

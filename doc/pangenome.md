@@ -164,7 +164,7 @@ The Minigraph-Cactus pipeline is run via the `cactus-pangenome` command. It cons
 
 The application and impact of this option is demonstrated in the explanation of the Yeast pangenome example below.
 
-You can disable reference chromosome splitting using the `cactus-pangenome --noSplit` option.  This will effectively remove the `cactus-graphmap-split` step from the pipeline, meaning that all chromosomes will be aligned in a single job.  Contigs that map to mulitple chromosomes will not be filtered, potentially resulting in fewer components in the graph.  This all comes at a potentially substantial increase in memory usage for all pipeline stpes beginning with Cactus. 
+You can disable reference chromosome splitting using the `cactus-pangenome --noSplit` option.  This will effectively remove the `cactus-graphmap-split` step from the pipeline, meaning that all chromosomes will be aligned in a single job.  Contigs that map to multiple chromosomes will not be filtered, potentially resulting in fewer components in the graph.  This all comes at a potentially substantial increase in memory usage for all pipeline stpes beginning with Cactus. 
 
 **Important** The reference genome assembly must be chromosome scale. If your reference assembly also consists of many small fragments (ex GRCh38) then you can use the `--refContigs` option to specify the chromosomes.  Ex for GRCh38 `--refContigs $(for i in $(seq 22); do printf "chr$i "; done ; echo "chrX chrY chrM")`.  If you want to include the remaining reference contig fragments in your graph, add the `--otherContig chrOther` option.  If you do not specify `--refContigs`, they will be determined automatically and all small contigs will be included. For example, if your reference has the following contigs and lengths
 ```
@@ -256,7 +256,7 @@ Further reading:
 
 #### Node Chopping
 
-The GBZ format uses 10 bits to store offsets within nodes, which imposees a 1024bp node length limit. Nodes are therefore chopped up as requried in the `.gbz` output (described above) to respect this limit. The index files derived from the `.gbz`: `.snarls`, `.dist`, and `.min` will share the `.gbz` graph's chopped ID space. 
+The GBZ format uses 10 bits to store offsets within nodes, which imposees a 1024bp node length limit. Nodes are therefore chopped up as required in the `.gbz` output (described above) to respect this limit. The index files derived from the `.gbz`: `.snarls`, `.dist`, and `.min` will share the `.gbz` graph's chopped ID space. 
 
 The `.gfa.gz` and node IDs referred to in the `.vcf.gz` file (via the variant IDs, AT and PS tags) are not chopped and therefore inconsistent with the `.gbz`.  This can be very confusing when trying to, for example, locate a variant in the `vcf.gz` back in the `.gbz` using node IDs: Node `X` in `.vcf.gz` and node `X` in `.gbz` will often both exist but can be totally different parts of the graph. 
 

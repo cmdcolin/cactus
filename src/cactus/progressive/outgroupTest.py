@@ -347,7 +347,7 @@ class TestCase(unittest.TestCase):
         for source, og in default_map.items():
             assert source in chrom_map
             # the idea is that even though .2 is closer (so it gets chosen in default)
-            # .1 has the desired chroms, so it shuold be chosen when the chrom map is used
+            # .1 has the desired chroms, so it should be chosen when the chrom map is used
             self.assertEqual(len(og), 1)
             if og[0].startswith('chimp') or og[0].startswith('ponabe') or og[0].startswith('gibbon'):
                 self.assertEqual([og[0].replace('.2', '.1')], chrom_map[source])
@@ -368,7 +368,7 @@ class TestCase(unittest.TestCase):
         for source, og in default_map.items():
             assert source in chrom_map_extra
             # there are three cases where either an extra outgroup is needed to satisfy both x,y
-            # or the closest outgroup can be added on becaue it wasn't in the solution that satisfied x,y
+            # or the closest outgroup can be added on because it wasn't in the solution that satisfied x,y
             self.assertEqual(len(og), 1)
             if og[0].startswith('chimp') or og[0].startswith('ponabe') or og[0].startswith('gor'):
                 self.assertEqual(len(chrom_map_extra[source]), 2)

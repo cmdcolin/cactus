@@ -103,7 +103,7 @@ def call_cactus_prepare(seq_file, outDir, jobStore, outSeqFile, cactus_prepare_o
         # nothing found, nothing to pass thought
         cactus_options = []
 
-    # cactus_prepare_options is append at the tail of cmd to overide cactus
+    # cactus_prepare_options is append at the tail of cmd to override cactus
     # options we pre-defined below
     cmd = (
         f"cactus-prepare {seq_file} "
@@ -1004,7 +1004,7 @@ def sanity_checks(options):
             )
 
     def add_action_sanity_check():
-        """Checkes if the genomes stated in the given file doesn't exist in the HAL file"""
+        """Checks if the genomes stated in the given file doesn't exist in the HAL file"""
 
         found = list()
         for genome in options.in_fasta_map.keys():

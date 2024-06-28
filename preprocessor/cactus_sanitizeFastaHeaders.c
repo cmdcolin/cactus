@@ -23,7 +23,7 @@
 #include "cactus.h"
 
 void usage() {
-    fprintf(stderr, "cactus_santizeFastaHeaders [fastaFile] [EVENT] (-p)\n");
+    fprintf(stderr, "cactus_sanitizeFastaHeaders [fastaFile] [EVENT] (-p)\n");
     fprintf(stderr, "-p: add pangenome-specific processing to strip everything before (up to) last occurrence of #\n");
 }
 
@@ -63,7 +63,7 @@ void addUniqueFastaPrefix(void* destination, const char *fastaHeader, const char
     // transform chr1:10-15 (1-based inclusive) into chr1_sub_9_15 (0-based end open)
     // this is a format that contains no special characters in order to make assembly hubs
     // happy.  But it does require conversion going into vg which wants chr[9-15] and
-    // hal2vg is updated to do this autmatically
+    // hal2vg is updated to do this automatically
     if (convert_range) {
         char *colonpos = strrchr(clipped_header, ':');
         char *dashpos = colonpos != NULL ? strrchr(clipped_header, '-') : NULL;

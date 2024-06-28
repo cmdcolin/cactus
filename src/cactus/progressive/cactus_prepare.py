@@ -52,7 +52,7 @@ def main(toil_mode=False):
                             help="Use the latest version of the docker container "
                             "rather than pulling one matching this version of cactus")
         parser.add_argument("--containerImage", dest="containerImage", default=None,
-                            help="Use the the specified pre-built containter image "
+                            help="Use the the specified pre-built container image "
                             "rather than pulling one from quay.io")
         parser.add_argument("--binariesMode", choices=["docker", "local", "singularity"],
                             help="The way to run the Cactus binaries (at top level; use --cactusOpts to set it in nested calls)",
@@ -436,7 +436,7 @@ def get_plan(options, inSeqFile, outSeqFile, configWrapper, toil):
 
     if options.toil:
         # kick things off with an empty job which we will hook subsequent jobs onto
-        # (using RoundedJob because root job must be sublcass of Job,
+        # (using RoundedJob because root job must be subclass of Job,
         #  https://github.com/ComparativeGenomicsToolkit/cactus/pull/284#issuecomment-684125478)
         start_job = RoundedJob()
         parent_job = start_job
@@ -468,7 +468,7 @@ def get_plan(options, inSeqFile, outSeqFile, configWrapper, toil):
                                                 get_log_options(options, 'preprocess', 'all'))
         return plan
 
-    # shedule up the alignments
+    # schedule up the alignments
     tree = inSeqFile.tree
     mc_tree = MultiCactusTree(tree)
     mc_tree.nameUnlabeledInternalNodes(configWrapper.getDefaultInternalNodePrefix())

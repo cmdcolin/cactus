@@ -13,7 +13,7 @@ TODO: Can we run chromosomes independently for inter-orang alignments?
 TOIL_SLURM_ARGS="--partition=long --time=8000" cactus-pangenome ./js-pg ./4-t2t-orangs-mc-2023v2.seqfile --outDir 4-t2t-orangs-mc-2023v2 --outName 4-t2t-orangs-mc-2023v2 --reference mPonAbe1_pri mPonAbe1_alt --noSplit --gbz clip full --gfa clip full --xg clip full --odgi --vcf --giraffe clip --haplo clip --vcfReference mPonAbe1_pri mPonAbe1_alt --logFile 4-t2t-orangs-mc-2023v2.log  --batchSystem slurm --coordinationDir /data/tmp --batchLogsDir ./batch-logs --consMemory 1500Gi --indexMemory 1500Gi --mgMemory 500Gi --mgCores 72 --mapCores 8 --consCores 128 --indexCores 72 --giraffe clip
 ```
 
-## VCF PostPorcessing
+## VCF PostProcessing
 
 The same processing was used to make the "decomposed" HPRC vcfs.  Note that this process will filter out giant SVs as a 100kb threshold was used.
 

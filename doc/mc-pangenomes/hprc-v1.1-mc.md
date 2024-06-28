@@ -38,7 +38,7 @@ sort -k1 hprc-v1.1-mc.seqfile > hprc-v1.1-mc.seqfile.sort ; mv hprc-v1.1-mc.seqf
 sed hprc-v1.1-mc.seqfile -i -e 's%s3://human-pangenomics/working/%https://s3-us-west-2.amazonaws.com/human-pangenomics/working/%g'
 ```
 
-For Year 1, we used CHM13 v1.1 with chrY from GRCh38 added (in future releases, we wil switch to CHM13 v2 which has chrY from HG002). Note that in the GRCh38-reference v1.0 graphs, we used a CHM13 without the Y, but we use the same for both graphs here to be consistent.
+For Year 1, we used CHM13 v1.1 with chrY from GRCh38 added (in future releases, we will switch to CHM13 v2 which has chrY from HG002). Note that in the GRCh38-reference v1.0 graphs, we used a CHM13 without the Y, but we use the same for both graphs here to be consistent.
 ```
 printf "CHM13\tftp://ftp.dfci.harvard.edu/pub/hli/minigraph/HPRC-f1g/CHM13v11Y.fa.gz\n" >> hprc-v1.1-mc.seqfile
 ```
@@ -208,7 +208,7 @@ taffy index -i hprc-v1.1-mc-chm13.full.single-copy.taf.gz
 
 
 
-The contenst of `hprc-rename.tsv`
+The contents of `hprc-rename.tsv`
 
 ```
 NA20129.2       NA20129#2

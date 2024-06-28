@@ -58,7 +58,7 @@ def main():
                         help="Use the latest version of the docker container "
                         "rather than pulling one matching this version of cactus")
     parser.add_argument("--containerImage", dest="containerImage", default=None,
-                        help="Use the the specified pre-built containter image "
+                        help="Use the the specified pre-built container image "
                         "rather than pulling one from quay.io")
     parser.add_argument("--binariesMode", choices=["docker", "local", "singularity"],
                         help="The way to run the Cactus binaries", default=None)
@@ -226,7 +226,7 @@ def mash_sketch(job, ref_seq, seq_id_map):
 def mash_dist(job, query_seqs, ref_seq, seq_id_map, ref_sketch_id):
     """ get the mash distance
     returns a map from genome name to -> (sample distance, distance, size)
-    where sample_distance is the concatentation of all sequences from the same sample (ie HG002.1 and HG002.2)
+    where sample_distance is the concatenation of all sequences from the same sample (ie HG002.1 and HG002.2)
     """
     work_dir = job.fileStore.getLocalTempDir()
     ref_sketch_path = os.path.join(ref_seq + '.fa.msh')

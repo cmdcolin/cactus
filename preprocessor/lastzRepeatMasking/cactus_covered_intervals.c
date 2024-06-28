@@ -452,7 +452,7 @@ window_slide_problem:
     return EXIT_FAILURE;
 
 window_too_short:
-    fprintf (stderr, "W=%u is unable to accomodate %s %u %u (window start = %u)\n",
+    fprintf (stderr, "W=%u is unable to accommodate %s %u %u (window start = %u)\n",
                      windowSize, qChrom, qStartOriginal, qEndOriginal, windowStart);
     return EXIT_FAILURE;
 

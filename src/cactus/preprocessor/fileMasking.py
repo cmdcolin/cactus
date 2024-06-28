@@ -124,7 +124,7 @@ class FileMaskingJob(RoundedJob):
                         if end - start > self.minLength or contig_lengths[seq] <= self.minLength:
                             region = seq
                             if end - start < contig_lengths[seq]:
-                                # go from 0-based end exlusive to 1-based end inclusive when
+                                # go from 0-based end exclusive to 1-based end inclusive when
                                 # converting from BED to samtools region
                                 region += ':{}-{}'.format(start + 1, end)
                             else:
@@ -138,7 +138,7 @@ class FileMaskingJob(RoundedJob):
             # transform chr1:10-15 (1-based inclusive) into chr1_sub_9_15 (0-based end open)
             # this is a format that contains no special characters in order to make assembly hubs
             # happy.  But it does require conversion going into vg which wants chr[9-15] and
-            # hal2vg can is updated to do this autmatically
+            # hal2vg can is updated to do this automatically
             cmd.append(get_faidx_subpath_rename_cmd())
             cactus_call(outfile=maskedFile, parameters=cmd)
         

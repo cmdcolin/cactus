@@ -160,7 +160,7 @@ These issues are all at least partially addressed by a new tool, `cactus-hal2maf
 * `--batchCores`: Number of threads per Toil job, which determines how many `hal2maf` processes are run.
 * `--batchMemory`: Amount of memory to assign to each Toil Job (defaults to an estimate based on the input size).
 * `--batchParallelHal2maf`: Number of `hal2maf` jobs to run concurrently. (defaults to `--batchCores`)
-* `--batchParallelTaf`: Number of `taffy` normalization jobs to run concurrently. (defaults ot `--batchCores`)
+* `--batchParallelTaf`: Number of `taffy` normalization jobs to run concurrently. (defaults to `--batchCores`)
 
 **Normalization**
 * `--filterGapCausingDupes` (**recommended**): Filter paralogous rows that would otherwise cause a block to be broken. In practice, it has a negligible effect on coverage, but a very large effect on the number of blocks.
@@ -257,7 +257,7 @@ will create `./chains-dir` and populate it with a Chain alignment between simHum
 
 By default, chains will be created using `halLiftover` [as in CAT](https://github.com/ComparativeGenomicsToolkit/Comparative-Annotation-Toolkit/blob/fc1623da5df1309d2e2f0b9bb0363aaab84708f4/cat/chaining.py#L96-L98). An option `--useHalSynteny` is provided to use that tool instead.
 
-In order to view your chains on the UCSC Genome Browser, you need to [convert to bigChain](https://genome.ucsc.edu/goldenPath/help/bigChain.html).  Use the `--bigChain` flag to have `cactus-hal2chains` produce `bigChain.bb` and `bigChain.link.bb` output files in addtion to `chain.gz`.
+In order to view your chains on the UCSC Genome Browser, you need to [convert to bigChain](https://genome.ucsc.edu/goldenPath/help/bigChain.html).  Use the `--bigChain` flag to have `cactus-hal2chains` produce `bigChain.bb` and `bigChain.link.bb` output files in addition to `chain.gz`.
 
 
 ### CAT
@@ -343,7 +343,7 @@ Cactus (through Toil) supports many other cluster workload managers in theory, i
 
 ## Running step by step
 
-Breaking Cactus up into smaller jobs can be practical, both for development and debugging, and managing larger workflows.  Here is an example of how to break the Evolver Mammals example up into three steps: 1) Preprocessing 2) Blast 3) Multiple Aligment:
+Breaking Cactus up into smaller jobs can be practical, both for development and debugging, and managing larger workflows.  Here is an example of how to break the Evolver Mammals example up into three steps: 1) Preprocessing 2) Blast 3) Multiple Alignment:
 ```
 cactus-prepare examples/evolverMammals.txt --outDir steps-output --outSeqFile steps-output/evovlerMammals.txt --outHal steps-output/evolverMammals.hal --jobStore jobstore
 ```
@@ -484,7 +484,7 @@ The reason you have to do this is that the Docker VM requires explicitly listing
 
 2) (since v2.6.0) to determine cactus chaining parameters. Similar to above the `<annealingRounds>` (inside `<caf>`) alements are used to set the minimum chain length based on the divergence. A longer length is used for more closely related species, which will result in more syntenic, less fragmented alignments. Shorter lengths are used at higher divergences to boost sensitvity, allowing that longer synteny may not be possible due to structural changes. 
 
-3) to estimate ancestral bases. Here the relative branch lengths are more important -- the base of a descendant that is much nearer to the ancestor will provide more information and will be wieghted higher when estimating it.  
+3) to estimate ancestral bases. Here the relative branch lengths are more important -- the base of a descendant that is much nearer to the ancestor will provide more information and will be weighted higher when estimating it.  
 
 4) to calculate outgroups.  Branch lengths are taken into account by the greedy heuristic used to find the nearest outgroup to the given ancestral event. 
 
@@ -500,7 +500,7 @@ That said, cactus can handle multifurcations up to a point: runtime increases qu
 
 **Q**: I'm running out of memory, or getting crashes, or very long runtimes in one of the `paf_xxxx` tools (`paf_tile, paf_to_bed` etc.). What can I do?
 
-**A**: This is almost always due to Cactus having found too many pairwise alignments in the all-to-all lastz mapping (blast) phase. The only way to get around this is my softmasking the input genomes before running Cactus. For most species, this is best done with RepeatMasker. We do intend to work on lifting this requirement in the future by making cactus's own repeatmasking more robust. As of v2.6.0, Cactus is more tolerant of repetative sequence but the input still needs to be softmasked. 
+**A**: This is almost always due to Cactus having found too many pairwise alignments in the all-to-all lastz mapping (blast) phase. The only way to get around this is my softmasking the input genomes before running Cactus. For most species, this is best done with RepeatMasker. We do intend to work on lifting this requirement in the future by making cactus's own repeatmasking more robust. As of v2.6.0, Cactus is more tolerant of repetitive sequence but the input still needs to be softmasked. 
 
 **Q**: The `--gpu` option isn't working for me.
 

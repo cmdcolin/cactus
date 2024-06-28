@@ -72,7 +72,7 @@ class RedMaskJob(RoundedJob):
                 red_cmd += self.redOpts.split()
             cactus_call(parameters=red_cmd)
 
-            # merge the exsiting masking back in
+            # merge the existing masking back in
             if not self.unmask:
                 if pre_mask_size:
                     cactus_call(infile=out_fa_path, outfile=out_fa_path + '.remask',

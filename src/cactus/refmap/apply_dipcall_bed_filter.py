@@ -142,7 +142,7 @@ def adjust_mapping(mapping, overlap_region):
             elif cig[0][1] in "HS": 
                 cig.popleft()
             else:
-                raise ValueError('Inappropiate Cigar value ' + cig[0][1] + ' in cigar ' + mapping[cig_field])
+                raise ValueError('Inappropriate Cigar value ' + cig[0][1] + ' in cigar ' + mapping[cig_field])
 
     # print ("mapping with adj start", cig, "overlap region", overlap_region)
 
@@ -185,7 +185,7 @@ def adjust_mapping(mapping, overlap_region):
             elif cig[-1][1] in "HS": 
                 cig.pop()
             else:
-                raise ValueError('Inappropiate Cigar value ' + cig[-1][1] + ' in cigar ' + mapping[cig_field])
+                raise ValueError('Inappropriate Cigar value ' + cig[-1][1] + ' in cigar ' + mapping[cig_field])
 
     # print ("mapping with adj end", cig, "overlap region", overlap_region)
 

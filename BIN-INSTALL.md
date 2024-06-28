@@ -33,7 +33,7 @@ cd bin && for i in wigToBigWig faToTwoBit bedToBigBed bigBedToBed axtChain pslPo
 
 ## Testing
 
-To test Cactus, the following will run a tiny sumulated alignment.
+To test Cactus, the following will run a tiny simulated alignment.
 ```
 cactus ./jobstore ./examples/evolverMammals.txt ./evolverMammals.hal --realTimeLogging
 ``

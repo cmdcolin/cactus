@@ -1384,7 +1384,7 @@ static void splitUsingSingleBranch(stCaf_SplitBranch *splitBranch,
 }
 
 // Split all highly confident branches at once, then update the
-// affected blocks all at once. Asssuming there is more than one
+// affected blocks all at once. Assuming there is more than one
 // confident split branch, we save a ton of time.
 static void splitUsingHighlyConfidentBranches(stCaf_SplitBranch *splitBranch,
                                               stSortedSet *splitBranches,

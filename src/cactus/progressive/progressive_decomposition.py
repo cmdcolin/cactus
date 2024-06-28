@@ -250,10 +250,10 @@ def check_branch_lengths(mc_tree, warning_cap=2.0, error_cap=25.0):
     https://github.com/ComparativeGenomicsToolkit/cactus/issues/610
 
     I was able to reproduce the issue (steps to do so in link) and resolve it just be correcting the branch lengths
-    to something reasonable.  So I don't know how, but these large lengths in this case are, in addtion to making
+    to something reasonable.  So I don't know how, but these large lengths in this case are, in addition to making
     the flat matrix, causing reference to run forever.
 
-    Without weeks to debug, here's a check to run on each input tree to make sure the lengths are reasonable. Emperically,
+    Without weeks to debug, here's a check to run on each input tree to make sure the lengths are reasonable. Empirically,
     the JC computation an stMatrix_jukesCantor() seems to get flat at around 28.377.  In practice I can't see any reason
     go much higher than 1...
     """
